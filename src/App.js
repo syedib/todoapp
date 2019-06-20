@@ -1,36 +1,23 @@
 import React from 'react';
-import Todos from './todos';
-import AddTodo from './AddTodo'
+import {Route, BrowserRouter} from 'react-router-dom';
+import TodoApp from './components/todo/TodoApp';
+import Navbar from './components/navbar/navbar';
+import Posts from './components/reduxapp/posts';
+
+
 class App extends React.Component{
-  state = {
-    todos:[
-      {id: 1, content: 'buy some food'},
-      {id: 2, content: 'need to wash clothes'}
-    ]
-  };
-  deleteTodo = (id) => {
-      const todos = this.state.todos.filter(todo=>{
-        return todo.id !== id;
-      });
-      this.setState({
-        todos: todos
-      });
-  }
-  addTodos = ({content}) => {
-    const todo = {id: Math.random(), content: content};
-    console.log(todo);
-    const todos = [...this.state.todos, todo];
-    this.setState({
-      todos
-    })
-    //this.setState([...todos, todo]);
-  }
+  
   render(){
-    return(<div className="todo-app container">
-      <h1 className="center text-blue"> Todo's </h1>
-      <Todos deleteTodo={this.deleteTodo} todos={this.state.todos} />
-      <AddTodo addTodos={this.addTodos}/>
-    </div>)
+    return(
+    <div>
+      <BrowserRouter>
+        <Navbar/>
+        <Route exact path="/" component={TodoApp}  />
+        <Route path="/reduxapp" component={Posts} />
+        <Route path="/about"/>
+      </BrowserRouter>
+    </div>
+    )
   }
 }
 
