@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-
+import {Link} from 'react-router-dom';
 class Posts extends React.Component{
     render(){
         return(
@@ -14,7 +14,7 @@ class Posts extends React.Component{
                                     <div className="col s12">
                                         <div className="card darken-1">
                                             <div className="card-content">
-                                                <span className="card-title">{post.title}</span>
+                                                <Link to={'/' + post.id}><span className="card-title">{post.title}</span></Link>
                                                 <p>{post.body}</p>
                                             </div>
                                             <div className="center">
